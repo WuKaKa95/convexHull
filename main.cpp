@@ -1,4 +1,3 @@
-#include <iostream>
 #include <cmath>
 #include <vector>
 #include <fstream>
@@ -6,7 +5,7 @@
 
 using namespace std;
 
-float vectorLenght(std::array <float, 2> vector1)                                //funkcja obliczajaca dlugosc wektora [x,y]
+float vectorLenght(std::array <float, 2> vector1)                                //funkcja obliczajaca dlugosc wektora
 {
     return sqrt(pow(vector1[0],2)+pow(vector1[1],2));
 }
@@ -83,6 +82,6 @@ int main()
             }
     }
     for(array<float, 2> i : hull)                                           //petla wyprowadza nam wszystkie elementy otoczki
-        cout << i[0] << " " << i[1]<< endl;
+        out<<i[0] <<" " <<i[1] <<endl;
     return 0;
 }
