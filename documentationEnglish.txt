@@ -9,3 +9,5 @@ Used libraries:
 <vector> - to handel simple dynamic arrays
 <array> - to handle arrays that are passed to functions and added as rows to the dynamic array
 <fstream> to handle work with "enter" and "out" .txt files, for easier input and output of data
+
+The "enter.txt" file can be freely modified to test the programme on any desired data
