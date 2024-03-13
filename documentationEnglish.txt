@@ -1,0 +1,11 @@
+The programme is using a lightly modified Jarvis Algorithm, which first chooses an edge point, and then chooses next points in a way that would make the new side of the hull create the biggest possible angle with the last created side.
+
+The programme takes is an information about the quantity of the points and their respective positions, and returns the points of which a Convex Hull surrounding all the other elements consists of, starting with the forst chosen point and continuing with a counter-clockwise order.
+
+To calculate the angle between respective vectors, the programme uses a mathematical formula: arccos(A/B*C) where A is the dot product of the two vectors creating an angle, and B and C are their respective lenghts. The result is multiplied by (180/pi), to get a result in degrees.
+
+Used libraries:
+<cmath> - to handle mathematical equations
+<vector> - to handel simple dynamic arrays
+<array> - to handle arrays that are passed to functions and added as rows to the dynamic array
+<fstream> to handle work with "enter" and "out" .txt files, for easier input and output of data

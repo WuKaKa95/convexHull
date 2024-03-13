@@ -1,0 +1,11 @@
+Program używa lekko zmodyfikowanego Algorytmu Jarvisa, który polega najpierw na znalezieniu punktu skrajnego, a następnie na dobieraniu nowych punktów w taki sposób, aby nowo utworzony bok utworzył największy możliwy kąt z poprzednio znalezionym bokiem otoczki.
+
+Program przyjmuje informację o ilości punktów oraz ich kolejne współrzędne, a następnie zwraca punkty otoczki, zaczynając od najniższego (a w przypadku kilku punktów położonych tak samo, od punktu leżącego najbardziej po lewej), i idąc od niego w kierunku przeciwnym do ruchu wskazówek zegara.
+
+Do obliczania wartości kąta między kolejnymi wektorami program używa arc-cosinusa iloczynu skalarnego podzielonego przez iloczyn dlugosci wektorow. Wynik tego działania jest mnożony przez (180/pi) aby otrzymac końcową wartość w stopniach.
+
+Zastosowane biblioteki to:
+<cmath> - do obslugi dzialan matematycznych
+<vector> - do uzycia prostych tablic dynamicznych
+<array> - do deklarowania tablic wstawianych potem jako kolejne wiersze tablicy dynamicznej, oraz przekazywanych do funkcji
+<fstream> - do pracy na zewnętrznych plikach "enter" i "out" celem łatwiejszego wprowadzania i wyprowadzania danych 
