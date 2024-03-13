@@ -9,3 +9,5 @@ Zastosowane biblioteki to:
 <vector> - do uzycia prostych tablic dynamicznych
 <array> - do deklarowania tablic wstawianych potem jako kolejne wiersze tablicy dynamicznej, oraz przekazywanych do funkcji
 <fstream> - do pracy na zewnętrznych plikach "enter" i "out" celem łatwiejszego wprowadzania i wyprowadzania danych 
+
+plik "enter.txt" może być dowolnie edytowany, celem sprawdzenia programu na wybranych danych.
