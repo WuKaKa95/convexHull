@@ -2,7 +2,6 @@
 #include <vector>
 #include <fstream>
 #include <array>
-#include <iostream>
 
 using namespace std;
 
