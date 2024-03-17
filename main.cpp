@@ -2,10 +2,11 @@
 #include <vector>
 #include <fstream>
 #include <array>
+#include <iostream>
 
 using namespace std;
 
-float vectorLenght(std::array <float, 2> vector1)                                //funkcja obliczajaca dlugosc wektora
+float vectorLenght(std::array <float, 2> vector1)                                //funkcja obliczajaca dlugosc wektora [x,y]
 {
     return sqrt(pow(vector1[0],2)+pow(vector1[1],2));
 }
@@ -34,8 +35,8 @@ int main()
         en>>points[i][1];
         points[i][2] == 0;                                                  //z poczatku nie zakladamy ze ktorykolwiek punkt na pewno jest czescia otoczki
     }
-    int minY = 0;                                                           //szukamy indeksu punktu o najnizszej wspolrzednej Y, a jesli jest takich kilka to wybieramy ten z nich ktory ma najmniejsza wspolrzedna X. Ten punkt na pewno bedzie czescia otoczki, ale nie zmieniamy jego zmiennej kontrolnej aby moc wykryc kiedy otoczka sie zamknie
-    for (int i=0;i<pointCount;i++)
+    int minY = points[0][1];                                                           //szukamy indeksu punktu o najnizszej wspolrzednej Y, a jesli jest takich kilka to wybieramy ten z nich ktory ma najmniejsza wspolrzedna X. Ten punkt na pewno bedzie czescia otoczki, ale nie zmieniamy jego zmiennej kontrolnej aby moc wykryc kiedy otoczka sie zamknie
+    for (int i=1;i<pointCount;i++)
     {
         if (points[minY][1]>points[i][1])
             minY = i;
@@ -61,12 +62,22 @@ int main()
             if (points[i][2]==1)                                            //jezeli juz wiemy ze dany punkt jest czescia otoczki, to go nie rozpatrujemy
                 continue;
             array <float, 2> vector2 = {points[i][0]-lastPoint[0], points[i][1]-lastPoint[1]};   //vector2 laczy ostatni znany punkt z punktem chwilowo rozpatrywanym
-            if (vectorAngle(vector1, vector2) > maxAngle)                   //jesli bok utworzony z rozpatrywanym obecnie punktem tworzyl najwiekszy kat z poprzednim bokiem, zostaje on kandydatem do wlaczenia do otoczki
+            if (vectorAngle(vector1, vector2) >= maxAngle)                   //jesli bok utworzony z rozpatrywanym obecnie punktem tworzyl najwiekszy kat z poprzednim bokiem, zostaje on kandydatem do wlaczenia do otoczki
             {
-                maxAngle = vectorAngle(vector1, vector2);                   //ustawiamy wartosc z ktora od teraz bedziemy porownywac kolejne katy
-                candidate = i;                                              //zmieniamy indeks kandydata
-                candidateVectorX = lastPoint[0]-points[i][0];               //i zapisujemy wspolrzedne wektora prowadzacego od ostatniego punktu do kandydata
-                candidateVectorY = lastPoint[1]-points[i][1];
+                if (abs(lastPoint[0] - points[i][0]) < abs(lastPoint[0]) - points[candidate][0]) //musimy rozpatrzec edge-case w ktorym dwa kandydujace punkty sa wspolliniowe wzgledem punktu wlaczonego juz do otoczki. Jako chwilowego kandydata wybieramy wowczas punkt znajdujacy sie blizej punktu wlaczonego juz do otoczki.
+                {
+                    maxAngle = vectorAngle(vector1, vector2);                   //ustawiamy wartosc z ktora od teraz bedziemy porownywac kolejne katy
+                    candidate = i;                                              //zmieniamy indeks kandydata
+                    candidateVectorX = lastPoint[0]-points[i][0];               //i zapisujemy wspolrzedne wektora prowadzacego od ostatniego punktu do kandydata
+                    candidateVectorY = lastPoint[1]-points[i][1];
+                }
+                else
+                {
+                    maxAngle = vectorAngle(vector1, vector2);                   //ustawiamy wartosc z ktora od teraz bedziemy porownywac kolejne katy
+                    candidate = i;                                              //zmieniamy indeks kandydata
+                    candidateVectorX = lastPoint[0]-points[i][0];               //i zapisujemy wspolrzedne wektora prowadzacego od ostatniego punktu do kandydata
+                    candidateVectorY = lastPoint[1]-points[i][1];
+                }
             }
         }
         lastPoint[0] = points[candidate][0];
@@ -85,3 +96,4 @@ int main()
         out<<i[0] <<" " <<i[1] <<endl;
     return 0;
 }
+
